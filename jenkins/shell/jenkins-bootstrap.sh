@@ -57,8 +57,6 @@ echo -e "-- Including Jenkins packages\n"
 wget -q -O - https://pkg.jenkins.io/debian/jenkins-ci.org.key | apt-key add - > /dev/null 2>&1
 sh -c "echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list"
 
-mkdir /jenkins/home
-ln -s /var/lib/jenkins /jenkins/home
 
 echo -e "-- Updating packages list\n"
 apt-get update -y -qq
