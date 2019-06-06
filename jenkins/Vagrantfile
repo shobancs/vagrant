@@ -1,19 +1,55 @@
+
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+
+domain = 'scheekur.devops'
+box = 'bento/ubuntu-18.04'
+ram = 1024
+
+puppet_nodes = [
+    {:hostname => 'jenkins-master',  :ip => '172.16.32.10', :ram => ram, :master=>true},
+    {:hostname => 'agent-1',  :ip => '172.16.32.21', :ram => 512, :master=>false},
+]
+
+
 Vagrant.configure("2") do |config|
-    config.vm.box = "bento/ubuntu-18.04"
 
-    config.vm.define :jenkins do |jenkins_config|
-        jenkins_config.vm.hostname = 'jenkins.cheekuru.com'
-        jenkins_config.vm.network "private_network", ip: "192.168.10.11"
+  puppet_nodes.each do |node|
+    config.vm.define node[:hostname] do |node_config|
+      node_config.vm.box = box
+      #node_config.vm.box_url = 'https://atlas.hashicorp.com/' + node_config.vm.box
+      node_config.vm.hostname = node[:hostname] + '.' + domain
+      node_config.vm.network :private_network, ip: node[:ip]
+
+      memory = node[:ram] ? node[:ram] : 512;
+      node_config.vm.provider :virtualbox do |vb|
+        vb.memory = memory
+        vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+        vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+        vb.customize ["modifyvm", :id, "--groups", "/scheekur-puppet-devops"]
+        vb.customize ["guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-set-threshold", 10000]
+      end
+
+      node_config.vm.provision "file", source: "config", destination: "devops"
+      node_config.vm.provision "shell", path: "shell/default-provision.sh"
+      if node[:master]
+        print "Jenkins server machine is spininig \n"
+        node_config.vm.provision "shell", inline: "/bin/systemctl stop firewalld && /bin/systemctl disable firewalld"
+        node_config.vm.provision "shell", path: "shell/jenkins-bootstrap.sh"
+
+
+      else
+        print "Started building a client machine   \n"
+        node_config.vm.provision "shell", path: "shell/node-provision.sh"
+      end
+
+    config.vm.provision :hosts do |provisioner|
+      provisioner.add_host '172.16.32.10' , ['jenkins.scheekur.devops', 'jenkins-master']
+      provisioner.add_host '172.16.32.21' , ['agent-1.sandbox.com', 'agent-1']
+
     end
-
-    config.vm.provider :virtualbox do |virtualbox_config|
-        virtualbox_config.name = "Jenkins - Ubuntu 18.04"
+     # end
     end
-
-    config.vm.provision :shell, path: "bootstrap.sh"
-
-    config.vm.synced_folder "", "/jenkins", nfs: true, mount_options: ["actimeo=2"]
+  end
 end
