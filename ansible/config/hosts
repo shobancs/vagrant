@@ -1,0 +1,4 @@
+[servers]
+host1 ansible_ssh_host=172.16.32.61
+host2 ansible_ssh_host=172.16.32.62
+host3 ansible_ssh_host=172.16.32.63
