@@ -11,7 +11,7 @@ puppet_nodes = [
     {:hostname => 'ansible',  :ip => '172.16.32.60', :ram => 2048, :master=>true},
     {:hostname => 'east-node-1',  :ip => '172.16.32.61', :ram => 1024, :master=>false},
     {:hostname => 'west-node-1',  :ip => '172.16.32.62', :ram => 1024, :master=>false},
-    {:hostname => 'west-node-2',  :ip => '172.16.32.62', :ram => 1024, :master=>false},
+    {:hostname => 'west-node-2',  :ip => '172.16.32.63', :ram => 1024, :master=>false},
 ]
 
 
