@@ -19,6 +19,10 @@
   yum update -y
   yum install -y ntpdate  tree rsync curl wget unzip vim rpm-build rsync net-tools nodejs python2 python3 maven
   #ntpdate 0.centos.pool.ntp.org
+  #sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
+  #systemctl restart sshd;
+  cp devops/id_rsa* .ssh/
+  cat devops/id_rsa.pub >> .ssh/authorized_keys
 
   curl -fsSL https://get.docker.com/ | sh
 
