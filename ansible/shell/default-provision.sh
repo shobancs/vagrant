@@ -17,7 +17,7 @@
   echo "installing ntpdate"
 
   yum update -y
-  yum install -y ntpdate  tree rsync curl wget unzip vim rpm-build rsync net-tools nodejs python2 python3 maven
+  yum install -y ntpdate  tree rsync curl wget unzip vim rpm-build rsync net-tools nodejs python2 python3 maven git
   #ntpdate 0.centos.pool.ntp.org
   #sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
   #systemctl restart sshd;
