@@ -28,7 +28,7 @@
   cp /vagrant/config/resolv.conf /etc/
 
   #curl -fsSL https://get.docker.com/ | sh
-  yum remove docker* -y
+  #yum remove docker* -y
   yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
   yum install docker-ce-18.06.3.ce-3.el7 -y
 
