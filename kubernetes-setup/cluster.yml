@@ -11,7 +11,7 @@ nodes:
   user: vagrant
   docker_socket: /var/run/docker.sock
   ssh_key: ""
-  ssh_key_path: ~/.ssh/id_rsa
+  ssh_key_path: /Users/scheekur/Desktop/shoban/Training/DevOps/k8s/kubernetes-setup/config/id_rsa
   ssh_cert: ""
   ssh_cert_path: ""
   labels: {}
@@ -24,20 +24,7 @@ nodes:
   user: vagrant
   docker_socket: /var/run/docker.sock
   ssh_key: ""
-  ssh_key_path: ~/.ssh/id_rsa
-  ssh_cert: ""
-  ssh_cert_path: ""
-  labels: {}
-- address: 192.168.50.12
-  port: "22"
-  internal_address: ""
-  role:
-  - worker
-  hostname_override: ""
-  user: vagrant
-  docker_socket: /var/run/docker.sock
-  ssh_key: ""
-  ssh_key_path: ~/.ssh/id_rsa
+  ssh_key_path: /Users/scheekur/Desktop/shoban/Training/DevOps/k8s/kubernetes-setup/config/id_rsa
   ssh_cert: ""
   ssh_cert_path: ""
   labels: {}
@@ -128,7 +115,7 @@ system_images:
   ingress: rancher/nginx-ingress-controller:0.21.0-rancher3
   ingress_backend: rancher/nginx-ingress-controller-defaultbackend:1.5-rancher1
   metrics_server: rancher/metrics-server:v0.3.1
-ssh_key_path: /Users/scheekur/Desktop/shoban/Training/DevOps/Vagrant/vagrant/kubernetes-setup/config/id_rsa
+ssh_key_path: /Users/scheekur/Desktop/shoban/Training/DevOps/k8s/kubernetes-setup/config/id_rsa
 ssh_cert_path: ""
 ssh_agent_auth: false
 authorization:
