@@ -20,6 +20,7 @@
   apt-get install -y ntpdate  tree rsync curl wget unzip vim rpm-build rsync net-tools nodejs python2 python3 maven
   #ntpdate 0.centos.pool.ntp.org
 
+  sudo apt install openjdk-8-jdk -y 
   curl -fsSL https://get.docker.com/ | sh
 
   systemctl start docker
