@@ -1,0 +1,57 @@
+
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+
+domain = 'cheekuru.com'
+box = 'centos/7'
+
+
+nginx_nodes = [
+    {:hostname => 'backed-server-1',  :ip => '172.16.33.51', :ram => 1024, :proxy=>false},
+    {:hostname => 'load-balancer',  :ip => '172.16.33.50', :ram => 1024, :proxy=>true},
+
+]
+
+
+Vagrant.configure("2") do |config|
+
+  nginx_nodes.each do |node|
+    config.vm.define node[:hostname] do |node_config|
+      node_config.vm.box = box
+      #node_config.vm.box_url = 'https://atlas.hashicorp.com/' + node_config.vm.box
+      node_config.vm.hostname = node[:hostname] + '.' + domain
+      node_config.vm.network :private_network, ip: node[:ip]
+
+      memory = node[:ram] ? node[:ram] : 512;
+      node_config.vm.provider :virtualbox do |vb|
+        vb.memory = memory
+        vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+        vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+        vb.customize ["modifyvm", :id, "--groups", "/scheekur-puppet-devops"]
+        vb.customize ["guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-set-threshold", 10000]
+      end
+      if node[:proxy]
+        print "Nginx proxy server machine is spininig \n"
+        node_config.vm.provision "file", source: "nginx-conf", destination: "devops/nginx-conf"
+        node_config.vm.provision "file", source: "selinux", destination: "devops/selinux"
+        node_config.vm.provision "shell", path: "shell/proxy-host-bootstrap.sh"
+
+
+      else
+        print "Started building a backend machine   \n"
+        node_config.vm.provision "file", source: "nodejs-app", destination: "devops"
+        node_config.vm.provision "shell", path: "shell/backend-server-provision.sh"
+      end
+
+
+
+    config.vm.provision :hosts do |provisioner|
+      provisioner.add_host '172.16.33.50' , ['load-balancer.cheekuru.com.', 'load-balancer']
+      provisioner.add_host '172.16.33.51' , ['backed-server-1.cheekuru.com', 'backed-server-1']
+
+    end
+     # end
+    end
+  end
+end
