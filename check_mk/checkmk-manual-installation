@@ -1,0 +1,35 @@
+Step 1 – Disable SELinux
+
+getenforce
+
+vim /etc/sysconfig/selinux
+reboot
+yum update
+yum install ntp
+systemctl status ntpd
+systemctl start ntpd
+systemctl enable ntpd
+yum install epel-release -y
+
+wget https://mathias-kettner.de/support/1.5.0p12/check-mk-raw-1.5.0p12-el7-38.x86_64.rpm
+
+yum install check-mk-raw-1.5.0p12-el7-38.x86_64.rpm
+
+
+omd version
+
+omd create fosslinuxmonitor
+
+omd start fosslinuxmonitor
+
+http://172.16.20.60/fosslinuxmonitor
+
+  The admin user for the web applications is cmkadmin with password: YO0JyXwG
+
+
+   How to install the Check_Mk agent on Linux client
+   http://172.16.20.60/fosslinuxmonitor/check_mk/agents
+
+#ubuntu
+wget http://172.16.20.60/fosslinuxmonitor/check_mk/agents/check-mk-agent_1.5.0p12-1_all.deb
+#centos
