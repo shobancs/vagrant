@@ -6,3 +6,7 @@ puppet module install maestrodev-maven --version 1.4.0
 # Create Host groups
 # Add agent to the Host groups
 # Go to the agent node and puppet agent -t
+
+
+#Install Nginx proxy server
+puppet module install puppet-nginx --version 1.0.0
