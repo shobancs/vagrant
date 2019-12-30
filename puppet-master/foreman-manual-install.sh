@@ -49,11 +49,19 @@ vi /etc/puppetlabs/puppet/puppet.conf
 # Clean puppet agent certs
 rm -rf /etc/puppetlabs/puppet/ssl/
 
- /opt/puppetlabs/bin/puppet resource service puppet ensure=running enable=true
-
 systemctl start puppet
 systemctl enable puppet
 
- puppetserver ca generate --certname <CERTNAME> --subject-alt-names <DNS ALT NAMES> --ca-client
 
 puppet agent -t
+
+
+#Launch Foreman in Chrome browser, if the local foreman site is not loaded, please following the instructions
+Chrome/Catalina Certificate Issue
+Posted on October 25, 2019
+If you are having issues trying to reach a self signed website, router or esxi host, with an error:  NET::ERR_CERT_REVOKED . You will notice you cannot ignore and proceed in the new Mac OSX Catalina release!
+
+
+A quick solution (ensure you trust the site)
+
+In the chrome browser whilst on the page, type “thisisunsafe”
