@@ -1,0 +1,8 @@
+#install maven module from puppet forge
+
+puppet module install maestrodev-maven --version 1.4.0
+
+#Import maven and dependency classes in Foreman
+# Create Host groups
+# Add agent to the Host groups
+# Go to the agent node and puppet agent -t

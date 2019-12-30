@@ -4,17 +4,20 @@
 sudo yum -y install ntp ntpdate
 
 sudo systemctl start ntpd
-sudo systemctl enable ntpd#
+sudo systemctl enable ntpd
+#
 #Disable SElinux
 sudo vi /etc/sysconfig/selinux
 SELINUX=disabled
 
 #edit the DNS configuration
-sudo /etc/hosts
+sudo vi /etc/hosts
 127.0.0.1  foreman.cheekuru.com foreman localhost
 #127.0.1.1 foreman.cheekuru.com foreman
 172.16.40.11 foreman.cheekuru.com puppet
 172.16.40.12 node-1.cheekuru.com node-1
+
+#Ping server host from agent and vice-versa
 
 #Latest version of puppet lab setup
 sudo yum -y install https://yum.puppet.com/puppet6-release-el-7.noarch.rpm
@@ -44,7 +47,12 @@ sudo yum install -y puppet-agent
 #copy puppet agent configuration from the master
 vi /etc/puppetlabs/puppet/puppet.conf
 # Clean puppet agent certs
- rm -rf /etc/puppetlabs/puppet/ssl/
+rm -rf /etc/puppetlabs/puppet/ssl/
+
+ /opt/puppetlabs/bin/puppet resource service puppet ensure=running enable=true
+
+systemctl start puppet
+systemctl enable puppet
 
  puppetserver ca generate --certname <CERTNAME> --subject-alt-names <DNS ALT NAMES> --ca-client
 

@@ -33,3 +33,11 @@ http://172.16.20.60/fosslinuxmonitor
 #ubuntu
 wget http://172.16.20.60/fosslinuxmonitor/check_mk/agents/check-mk-agent_1.5.0p12-1_all.deb
 #centos
+
+
+hosts:
+
+east-host-1: 172.16.20.61
+east-host-2: 172.16.20.62
+wget http://172.16.20.60/fosslinuxmonitor/check_mk/agents/check-mk-agent-1.5.0p12-1.noarch.rpm
+rpm -ivh check-mk-agent-1.5.0p12-1.noarch.rpm

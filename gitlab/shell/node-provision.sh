@@ -16,26 +16,9 @@
   chmod +x /auto/ecs/bin/install-dotfiles
   echo "installing ntpdate"
 
-
+  yum update -y
+  yum install -y ntpdate  tree rsync curl wget unzip vim rpm-build rsync net-tools nodejs python2 python3 maven
   #ntpdate 0.centos.pool.ntp.org
-# Install puppet agent
-
-sudo yum -y install https://yum.puppet.com/puppet6-release-el-7.noarch.rpm
-sudo yum -y install http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-sudo yum update -y
-
-sudo yum install -y puppet-agent
-#copy puppet agent configuration from the master
-vi /etc/puppetlabs/puppet/puppet.conf
-# Clean puppet agent certs
-rm -rf /etc/puppetlabs/puppet/ssl/
-
-systemctl start puppet
-systemctl enable puppet
-
-
-puppet agent -t
-
 
   curl -fsSL https://get.docker.com/ | sh
 
