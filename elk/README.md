@@ -20,7 +20,7 @@ sudo systemctl start nginx
 sudo systemctl enable nginx
 ```
 
-Step 1 — Installing and Configuring Elasticsearch
+### Step 1 — Installing and Configuring Elasticsearch
 
 ```sudo rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
 sudo vi /etc/yum.repos.d/elasticsearch.repo
