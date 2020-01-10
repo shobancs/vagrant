@@ -12,18 +12,19 @@ sudo yum install java-1.8.0-openjdk
 sudo yum install java-11-openjdk -y
 
 3) Nginx : https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-centos-7
-`sudo yum install epel-release -y
+```sudo yum install epel-release -y
 sudo yum install nginx -y
 sudo systemctl start nginx
 sudo systemctl enable nginx
-`
+```
 
 Step 1 — Installing and Configuring Elasticsearch
-sudo rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
+```sudo rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
 sudo vi /etc/yum.repos.d/elasticsearch.repo
+```
 copy past to the repo files
-""
 
+```
 [elasticsearch-6.x]
 name=Elasticsearch repository for 6.x packages
 baseurl=https://artifacts.elastic.co/packages/6.x/yum
@@ -32,40 +33,47 @@ gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch
 enabled=1
 autorefresh=1
 type=rpm-md
-
-""
-
+```
 
 
-sudo yum install elasticsearch
+
+```sudo yum install elasticsearch```
 
 ### enable remote access for elastic search
-sudo vi /etc/elasticsearch/elasticsearch.yml
+```sudo vi /etc/elasticsearch/elasticsearch.yml
 
-add the following prpoerty
+#add the following prpoerty
 
 network.host: 0.0.0.0
-
-
+```
+```
 sudo systemctl start elasticsearch
 sudo systemctl status elasticsearch
 sudo systemctl enable elasticsearch
-
+```
+```
 curl -X GET "172.16.42.90:9200"
-
-## Step 2 — Installing and Configuring the Kibana Dashboard
+```
+### Step 2 — Installing and Configuring the Kibana Dashboard
+```
 sudo yum install kibana -y
+```
 
-### edit the kibana.yaml file to access externally
+#### edit the kibana.yaml file to access Kibana remotely sexternally
+```
 sudo vi  /etc/kibana/kibana.yml
-""
+```
+```
+
 server.host: "0.0.0.0"
-""
+```
 ### nginx proxy set up should be done which can be done later :)
 
+```
 sudo systemctl start kibana
 sudo systemctl status kibana
 sudo systemctl enable kibana
+```
 
 Go to browser and open URL
 http://172.16.42.90:5601/status#?_g=()
@@ -74,12 +82,12 @@ http://172.16.42.90:5601/app/kibana#/home/tutorial_directory/sampleData?_g=()
 
 ### Step 3 — Installing and Configuring Logstash
 
-sudo yum install logstash -y
-### add first input conf
-sudo vi /etc/logstash/conf.d/02-beats-input.conf
-
 ```
-
+sudo yum install logstash -y
+# dd first input conf
+sudo vi /etc/logstash/conf.d/02-beats-input.conf
+```
+```
 input {
   beats {
     port => 5044
@@ -88,7 +96,9 @@ input {
 ```
 
 ### 10-syslog-filter.conf
+```
 sudo vi /etc/logstash/conf.d/10-syslog-filter.conf
+````
 ```
 filter {
   if [fileset][module] == "system" {
@@ -129,10 +139,10 @@ filter {
 ```
 
 
-### 30-elasticsearch-output.conf
-
+#### 30-elasticsearch-output.conf
+```
 sudo vi /etc/logstash/conf.d/30-elasticsearch-output.conf
-
+```
 ```
 output {
   elasticsearch {
