@@ -1,17 +1,18 @@
 https://www.digitalocean.com/community/tutorials/how-to-install-elasticsearch-logstash-and-kibana-elastic-stack-on-centos-7
 
-##Prerequisites
+### Prerequisites
 
 1)specifications for our Elastic Stack server:
-
+```
 OS: CentOS 7.5
 RAM: 4GB
 CPU: 2
 2) Java 8
 sudo yum install java-1.8.0-openjdk
 sudo yum install java-11-openjdk -y
-
+```
 3) Nginx : https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-centos-7
+
 ```sudo yum install epel-release -y
 sudo yum install nginx -y
 sudo systemctl start nginx
@@ -19,6 +20,7 @@ sudo systemctl enable nginx
 ```
 
 Step 1 — Installing and Configuring Elasticsearch
+
 ```sudo rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
 sudo vi /etc/yum.repos.d/elasticsearch.repo
 ```
