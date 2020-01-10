@@ -42,7 +42,9 @@ type=rpm-md
 
 ```sudo yum install elasticsearch```
 
-### enable remote access for elastic search
+
+enable remote access for elastic search
+
 ```sudo vi /etc/elasticsearch/elasticsearch.yml
 
 #add the following prpoerty
@@ -62,7 +64,7 @@ curl -X GET "172.16.42.90:9200"
 sudo yum install kibana -y
 ```
 
-#### edit the kibana.yaml file to access Kibana remotely sexternally
+edit the kibana.yaml file to access Kibana remotely sexternally
 ```
 sudo vi  /etc/kibana/kibana.yml
 ```
