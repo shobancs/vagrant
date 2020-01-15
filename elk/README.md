@@ -43,7 +43,7 @@ type=rpm-md
 ```sudo yum install elasticsearch```
 
 
-enable remote access for elastic search
+Enable remote access for elastic search
 
 ```sudo vi /etc/elasticsearch/elasticsearch.yml
 
@@ -64,7 +64,7 @@ curl -X GET "172.16.42.90:9200"
 sudo yum install kibana -y
 ```
 
-edit the kibana.yaml file to access Kibana remotely sexternally
+edit the kibana.yaml file to access Kibana remotely externally
 ```
 sudo vi  /etc/kibana/kibana.yml
 ```
@@ -81,9 +81,10 @@ sudo systemctl enable kibana
 ```
 
 Go to browser and open URL
+```
 http://172.16.42.90:5601/status#?_g=()
 http://172.16.42.90:5601/app/kibana#/home/tutorial_directory/sampleData?_g=()
-
+```
 
 ### Step 3 — Installing and Configuring Logstash
 

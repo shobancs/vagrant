@@ -10,7 +10,6 @@ box = 'bento/ubuntu-18.04'
 jenkins_nodes = [
     {:hostname => 'jenkins-master',  :ip => '172.16.32.11', :ram => 2048, :master=>true},
     {:hostname => 'agent-1',  :ip => '172.16.32.22', :ram => 1024, :master=>false},
-    {:hostname => 'agent-2',  :ip => '172.16.32.23', :ram => 1024, :master=>false},
     {:hostname => 'prod-host',  :ip => '172.16.32.24', :ram => 1024, :master=>false},
 ]
 
