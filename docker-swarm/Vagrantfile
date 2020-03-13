@@ -7,16 +7,16 @@ domain = 'cheekuru.com'
 box = 'centos/7'
 
 
-puppet_nodes = [
+swarm_nodes = [
     {:hostname => 'swarm-master',  :ip => '172.16.42.50', :ram => 2048, :master=>true},
-    {:hostname => 'node-1',  :ip => '172.16.42.51', :ram => 1024, :master=>true},
+    {:hostname => 'worker-1',  :ip => '172.16.42.51', :ram => 1024, :master=>true},
 
 ]
 
 
 Vagrant.configure("2") do |config|
 
-  puppet_nodes.each do |node|
+  swarm_nodes.each do |node|
     config.vm.define node[:hostname] do |node_config|
       node_config.vm.box = box
       #node_config.vm.box_url = 'https://atlas.hashicorp.com/' + node_config.vm.box
@@ -38,7 +38,7 @@ Vagrant.configure("2") do |config|
 
     config.vm.provision :hosts do |provisioner|
       provisioner.add_host '172.16.42.50' , ['swarm-master.cheekuru.com.', 'swarm-master']
-      provisioner.add_host '172.16.42.51' , ['node-1.cheekuru.com', 'node-1']
+      provisioner.add_host '172.16.42.51' , ['worker-1.cheekuru.com', 'worker-1']
 
     end
      # end

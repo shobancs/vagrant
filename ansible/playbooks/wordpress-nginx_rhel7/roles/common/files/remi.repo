@@ -64,4 +64,3 @@ baseurl=http://rpms.remirepo.net/enterprise/7/debug-test/$basearch/
 enabled=0
 gpgcheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-remi
-

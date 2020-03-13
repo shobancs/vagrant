@@ -1,2 +1,2 @@
 [wordpress-server]
-webserver2
+node1.cheekuru.com ansible_ssh_host=172.16.32.61

@@ -1,4 +1,4 @@
-### install Sonarqube community docker container on the sonarqube hosts
+### install Sonarqube community version on the sonarqube hosts
 docker run -d --name sonarqube -p 9000:9000 sonarqube
 
 ## Install Artifactory pro version on the artifactory host

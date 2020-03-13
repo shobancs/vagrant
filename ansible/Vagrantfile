@@ -8,10 +8,10 @@ box = 'centos/7'
 
 
 puppet_nodes = [
-    {:hostname => 'ansible',  :ip => '172.16.32.60', :ram => 2048, :master=>true},
-    {:hostname => 'east-node-1',  :ip => '172.16.32.61', :ram => 1024, :master=>false},
-    {:hostname => 'west-node-1',  :ip => '172.16.32.62', :ram => 1024, :master=>false},
-    {:hostname => 'west-node-2',  :ip => '172.16.32.63', :ram => 1024, :master=>false},
+    {:hostname => 'ansible',  :ip => '172.16.32.60', :ram => 1024, :master=>true},
+    {:hostname => 'node1',  :ip => '172.16.32.61', :ram => 2048, :master=>false},
+    {:hostname => 'node2',  :ip => '172.16.32.62', :ram => 1024, :master=>false},
+    {:hostname => 'node3',  :ip => '172.16.32.63', :ram => 1024, :master=>false},
 ]
 
 
@@ -44,9 +44,9 @@ Vagrant.configure("2") do |config|
 
     config.vm.provision :hosts do |provisioner|
       provisioner.add_host '172.16.32.60' , ['ansible.cheekuru.com', 'ansible']
-      provisioner.add_host '172.16.32.61' , ['east-node-1.cheekuru.com', 'east-node-1']
-      provisioner.add_host '172.16.32.62' , ['west-node-1.cheekuru.com', 'west-node-1']
-      provisioner.add_host '172.16.32.63' , ['west-node-2.cheekuru.com', 'west-node-2']
+      provisioner.add_host '172.16.32.61' , ['node1.cheekuru.com', 'node1']
+      provisioner.add_host '172.16.32.62' , ['node2.cheekuru.com', 'node2']
+      provisioner.add_host '172.16.32.63' , ['node3.cheekuru.com', 'node3']
 
     end
      # end
