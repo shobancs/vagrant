@@ -4,11 +4,11 @@
 
 
 domain = 'cheekuru.com'
-box = 'centos/7'
+box = 'bento/ubuntu-18.04'
 
 
 puppet_nodes = [
-    {:hostname => 'gitlab',  :ip => '172.17.42.80', :ram => 2048, :master=>true},
+    {:hostname => 'gitlab',  :ip => '172.17.42.80', :ram => 6048, :master=>true},
 ]
 
 
@@ -35,7 +35,7 @@ Vagrant.configure("2") do |config|
 
       config.vm.provision :hosts do |provisioner|
         provisioner.add_host '172.17.42.80' , ['gitlab.cheekuru.com', 'gitlab']
-        
+
       end
 
 

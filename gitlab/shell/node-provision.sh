@@ -16,11 +16,15 @@
   chmod +x /auto/ecs/bin/install-dotfiles
   echo "installing ntpdate"
 
-  yum update -y
-  yum install -y ntpdate  tree rsync curl wget unzip vim rpm-build rsync net-tools nodejs python2 python3 maven
+  apt update -y
+  apt install -y ntpdate  tree rsync curl wget unzip vim rsync net-tools nodejs python2 python3 maven
+  apt install apt-transport-https ca-certificates curl software-properties-common
+  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+  sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+  sudo apt update -y
+  apt-cache policy docker-ce
+  apt install docker-ce -y
   #ntpdate 0.centos.pool.ntp.org
-
-  curl -fsSL https://get.docker.com/ | sh
 
   systemctl start docker
   systemctl status docker
@@ -29,4 +33,4 @@
   docker info
   docker run hello-world
 
-  echo "Centos provisioning is  completed................................................"
+  echo "Gitlab host provisioning is  completed................................................"

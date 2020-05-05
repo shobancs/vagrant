@@ -30,6 +30,7 @@ Vagrant.configure("2") do |config|
         vb.customize ["guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-set-threshold", 10000]
       end
       node_config.vm.provision "shell", inline:  "apt-get update -y"
+      node_config.vm.provision "shell", inline:  "apt install git -y"
     end
   end
 end

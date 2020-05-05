@@ -1,1 +1,33 @@
 curl -LJO https://gitlab-runner-downloads.s3.amazonaws.com/latest/rpm/gitlab-runner_<arch>.rpm
+Community Edition
+https://about.gitlab.com/install/#ubuntu?version=ce
+
+1. Install and configure the necessary dependencies
+sudo apt update
+sudo apt install ca-certificates curl openssh-server postfix
+
+
+2. Install GitLab
+
+cd /tmp
+curl -LO https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh
+sudo bash /tmp/script.deb.sh
+
+3. Adjusting the Firewall Rules
+sudo ufw status
+sudo ufw allow http
+sudo ufw allow https
+sudo ufw allow OpenSSH
+
+Note : Gitlab will be installed /opt/gitlab/
+
+4.Editing the GitLab Configuration File
+
+sudo nano /etc/gitlab/gitlab.rb
+
+/etc/gitlab/gitlab.rb
+##! For more details on configuring external_url see:
+##! https://docs.gitlab.com/omnibus/settings/configuration.html#configuring-the-external-url-for-gitlab
+external_url 'https://example.com'
+
+sudo gitlab-ctl reconfigure

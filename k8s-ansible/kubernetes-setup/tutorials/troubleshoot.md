@@ -1,6 +1,8 @@
 ###Changing the kubelet Configuration
 ### step1 update kubelet config
-`$ less /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
+`$ vagrant ssh k8s-master
+sudo vi /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
+
 [Service]
 Environment="KUBELET_KUBECONFIG_ARGS=--bootstrap-kubeconfig=/etc/kubernetes/bootstrap-kubelet.conf --kubeconfig=/etc/kubernetes/kubelet.conf"
 Environment="KUBELET_SYSTEM_PODS_ARGS=--pod-manifest-path=/etc/kubernetes/manifests --allow-privileged=true"
@@ -15,6 +17,12 @@ ExecStart=
 ExecStart=/usr/bin/kubelet $KUBELET_KUBECONFIG_ARGS $KUBELET_SYSTEM_PODS_ARGS $KUBELET_NETWORK_ARGS $KUBELET_DNS_ARGS $KUBELET_AUTHZ_ARGS $KUBELET_CADVISOR_ARGS $KUBELET_CGROUP_ARGS $KUBELET_CERTIFICATE_ARGS $KUBELET_EXTRA_ARGS`
 
 ###Step2) restarted the kubelet
-`systemctl daemon-reload
- systemctl restart kubelet
 `
+sudo systemctl daemon-reload
+sudo systemctl restart kubelet
+ `
+
+ 2 Warning  FailedScheduling  46s (x2 over 46s)  default-scheduler  running "VolumeBinding" filter plugin for pod "my-release-jenkins-5fdc5bb8b7-vg8p7": pod has unbound immediate PersistentVolumeClaims
+
+
+Debug Node

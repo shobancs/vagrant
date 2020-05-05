@@ -1,19 +1,3 @@
-
-1) K8s install methods and tools
-Install Minikube : https://kubernetes.io/docs/setup/learning-environment/minikube/#minikube-features
-
-
-
-###Learn K8s components
-https://kubernetes.io/docs/concepts/overview/components/
-
-### Understanding Kubernetes Objects
-https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/
-kubectl apply -f https://k8s.io/examples/application/deployment.yaml --record
-
-###Playing with kubeadm in Vagrant Machines, Part 2
-https://medium.com/@joatmon08/playing-with-kubeadm-in-vagrant-machines-part-2-bac431095706
-
 ### Deploy Web UI (Dashboard)
 https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/#deploying-the-dashboard-ui
 
@@ -32,19 +16,6 @@ kubectl proxy
 Kubectl will make Dashboard available at http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/.
 
 
-Install Kube-apiserver on master node
-https://snapcraft.io/install/kube-apiserver/ubuntu
-vagrant ssh k8-master
-sudo apt update
-sudo apt install snapd
-sudo snap install kube-apiserver
-
-kube-apiserver --enable-admission-plugins=DefaultStorageClass
-
-Storage class creation
-kubectl create -f lab-example/storage/StorageClass.yaml
-kubectl get storageclass
-
-Volumes examples
-
-https://github.com/kubernetes/examples/tree/master/staging/volumes/nfs
+Follow the sample user access creation for admin-user
+https://github.com/kubernetes/dashboard/blob/master/docs/user/access-control/creating-sample-user.md
+kubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashboard get secret | grep admin-user | awk '{print $1}')
