@@ -1,0 +1,18 @@
+{
+  "kind": "Status",
+  "apiVersion": "v1",
+  "metadata": {
+    
+  },
+  "status": "Failure",
+  "message": "replicasets.apps \"frontend\" not found",
+  "reason": "NotFound",
+  "details": {
+    "name": "frontend",
+    "group": "apps",
+    "kind": "replicasets"
+  },
+  "code": 404
+}--_curl_--"kind":"DeleteOptions"
+--_curl_--"apiVersion":"v1"
+--_curl_--"propagationPolicy":"Foreground"
