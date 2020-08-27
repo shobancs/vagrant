@@ -8,7 +8,7 @@ box = 'bento/ubuntu-18.04'
 
 
 puppet_nodes = [
-      {:hostname => 'jenkins-master-ubuntu',  :ip => '172.16.32.11', :ram => 2048, :master=>true},
+      {:hostname => 'sample-ubuntu',  :ip => '172.16.32.11', :ram => 2048, :master=>true},
 ]
 
 
@@ -26,7 +26,7 @@ Vagrant.configure("2") do |config|
         vb.memory = memory
         vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
         vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
-        vb.customize ["modifyvm", :id, "--groups", "/scheekur-puppet-devops"]
+        vb.customize ["modifyvm", :id, "--groups", "/cheekuru-devops"]
         vb.customize ["guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-set-threshold", 10000]
       end
       node_config.vm.provision "shell", inline:  "apt-get update -y"

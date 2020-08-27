@@ -49,21 +49,15 @@ service apache2 restart
 
 # JAVA #########################################################################
 echo -e "-- Installing JAVA packages\n"
-apt-get install -y openjdk-8-jre > /dev/null 2>&1
-apt-get install -y openjdk-8-jdk > /dev/null 2>&1
+apt install default-jdk
 
 # JENKINS #########################################################################
 echo -e "-- Including Jenkins packages\n"
-wget -q -O - https://pkg.jenkins.io/debian/jenkins-ci.org.key | apt-key add - > /dev/null 2>&1
-sh -c "echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list"
-
-
-echo -e "-- Updating packages list\n"
-apt-get update -y -qq
-echo -e "-- Installing Jenkins automation server\n"
-
-
-apt-get install jenkins -y -qq
+wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
+sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > \
+    /etc/apt/sources.list.d/jenkins.list'
+sudo apt-get update
+sudo apt-get install jenkins
 
 # END ##########################################################################
 echo -e "-- ---------------- --"
