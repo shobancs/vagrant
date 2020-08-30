@@ -54,10 +54,14 @@ apt install default-jdk
 # JENKINS #########################################################################
 echo -e "-- Including Jenkins packages\n"
 wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
-sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > \
+ sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > \
     /etc/apt/sources.list.d/jenkins.list'
-sudo apt-get update
-sudo apt-get install jenkins
+ apt-get update
+ apt-get install jenkins -y
+ systemctl start jenkins
+ ufw allow 8080
+ ufw status
+
 
 # END ##########################################################################
 echo -e "-- ---------------- --"
