@@ -49,18 +49,19 @@ service apache2 restart
 
 # JAVA #########################################################################
 echo -e "-- Installing JAVA packages\n"
-apt install default-jdk
+apt install default-jdk -y
 
 # JENKINS #########################################################################
 echo -e "-- Including Jenkins packages\n"
 wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
- sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > \
+sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > \
     /etc/apt/sources.list.d/jenkins.list'
- apt-get update
- apt-get install jenkins -y
- systemctl start jenkins
- ufw allow 8080
- ufw status
+apt-get update
+apt-get install jenkins -y
+systemctl start jenkins
+systemctl status jenkins
+ufw allow 8080
+ufw status
 
 
 # END ##########################################################################

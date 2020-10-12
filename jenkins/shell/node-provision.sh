@@ -18,10 +18,9 @@
 
   apt-get update -y
 
-
-  curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
   #ntpdate 0.centos.pool.ntp.org
   #to install Node.js 10.x and npm
+  curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
   apt-get install -y nodejs
   apt install openjdk-11-jdk -y
   ## You may also need development tools to build native addons:
@@ -31,7 +30,7 @@
  curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 
  echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
- apt-get update && sudo apt-get install yarn
+ apt-get update && sudo apt-get install yarn -y
 
  apt-get install -y ntpdate  tree rsync curl wget unzip vim rsync net-tools  python3 maven
 

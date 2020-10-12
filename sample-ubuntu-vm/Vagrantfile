@@ -31,6 +31,12 @@ Vagrant.configure("2") do |config|
       end
       node_config.vm.provision "shell", inline:  "apt-get update -y"
       node_config.vm.provision "shell", inline:  "apt install git -y"
+      node_config.vm.provision "shell", inline:  "curl -fsSL https://get.docker.com/ | sh"
+      node_config.vm.provision "shell", inline:  "systemctl start docker"
+      node_config.vm.provision "shell", inline:  "systemctl enable docker"
+      node_config.vm.provision "shell", inline:  "systemctl status docker"
+      node_config.vm.provision "shell", inline:  "usermod -aG docker vagrant"
+      node_config.vm.provision "shell", inline:  "docker run hello-world"
     end
   end
 end
